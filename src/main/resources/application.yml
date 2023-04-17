@@ -1,0 +1,63 @@
+spring:
+  profiles:
+    active: dev
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  defaultUser:
+    username: bookAdmin
+    password: invisionDay2k23
+    role: ADMIN_ROLE
+
+  datasource:
+    url: jdbc:postgresql://localhost:8090/booking
+    username: postgres
+    password: invisionDay2k23
+
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+  sql:
+    init:
+      mode: never
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  defaultUser:
+    username: ${DEFAULT_BASIC_AUTH_USERNAME}
+    password: ${DEFAULT_BASIC_AUTH_PASSWORD}
+    role: ${DEFAULT_BASIC_AUTH_ROLE}
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+  sql:
+    init:
+      mode: never
