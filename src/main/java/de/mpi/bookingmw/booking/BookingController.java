@@ -35,6 +35,13 @@ public class BookingController {
         return ResponseEntity.ok(bookings);
     }
 
+    @GetMapping("/event/{id}")
+    public ResponseEntity<?> readAllBookingsByEventId(@PathVariable UUID id) {
+        List<Booking> bookings = new ArrayList<>();
+        bookingRepo.findByEventIdOrderByIdAsc(id.toString()).forEach(bookings::add);
+        return ResponseEntity.ok(bookings);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Booking> readBookingById(@PathVariable UUID id) {
         Optional<Booking> bookingOptional = bookingRepo.findById(id);
