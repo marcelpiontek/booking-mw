@@ -45,7 +45,7 @@ spring:
     role: ${DEFAULT_BASIC_AUTH_ROLE}
 
   datasource:
-    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    url: jdbc:postgresql://${DB_SERVICE_NAME}/${DB_NAME}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
 
@@ -61,3 +61,8 @@ spring:
   sql:
     init:
       mode: never
+
+server:
+  servlet:
+    context-path: /api
+
